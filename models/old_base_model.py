@@ -14,17 +14,19 @@ class BaseModel:
         """
         Initializes an instance
         """
-        if kwargs is not None and len(kwargs) != 0:
-            if '__class__' in kwargs:
-                del kwargs['__class__']
-            kwargs['created_at'] = datetime.fromisoformat(kwargs['created_at'])
-            kwargs['updated_at'] = datetime.fromisoformat(kwargs['updated_at'])
-            self.__dict__.update(kwargs)
-        else:
+        if kwargs is not None:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-        
+        else:
+            kwargs["created_at"] = datetime.strptime(kwargs["created_at"],
+                                                     "%Y-%m-%dT%H:%M:%S.%f")
+            kwargs["updated_at"] = datetime.strptime(kwargs["updated_at"],
+                                                     "%Y-%m-%dT%H:%M:%S.%f")
+            for key, val in kwargs.items():
+                if "__class__" not in key:
+                    setattr(self, key, val)
+
     def __str__(self):
         """
         String representation when instance is printed
