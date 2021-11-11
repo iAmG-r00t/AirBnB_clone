@@ -3,6 +3,7 @@
 Serializes instances to a JSON file and deserializes JSON file to instances
 """
 import json
+from datetime import datetime
 
 
 class FileStorage:
@@ -16,17 +17,28 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        key = type(obj).__name__ + '.' + str(obj.id)
-        FileStorage.__objects[key] = obj.__str__()
+        key = type(obj).__name__ + '.' + obj.id
+        FileStorage.__objects[key] = obj
         
     def save(self):
-        objstr = json.dumps(FileStorage.__objects)
+        """
+        serializes FileStroage.__objects
+        """
         with open(FileStorage.__file_path, 'w+') as f:
-            f.write(objstr)
+            dictofobjs = {}
+            for key, value in FileStorage.__objects.items():
+                dictofobjs[key] = value.to_dict()
+            json.dump(dictofobjs, f)
 
     def reload(self):
+        """
+        deserializes instances got from json file
+        """
         try:
             with open(FileStorage.__file_path, 'r') as f:
-                FileStorage.__objects = json.loads(f.read())
+                dictofobjs = json.loads(f.read())
+                from models.base_model import BaseModel
+                for key, value in dictofobjs.items():
+                    FileStorage.__objects[key] = BaseModel(**value)
         except FileNotFoundError:
             pass
