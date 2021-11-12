@@ -6,6 +6,7 @@ Airbnb Console
 
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """
     The entry point for the command interpreter
@@ -26,5 +27,9 @@ class HBNBCommand(cmd.Cmd):
         """Empty line + Enter shouldn't execute anything"""
         pass
 
+
 if __name__ == '__main__':
+    try:
         HBNBCommand().cmdloop()
+    except KeyboardInterrupt:
+        print()
