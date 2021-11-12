@@ -27,7 +27,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             from .__init__ import storage
             storage.new(self)
-        
+
     def __str__(self):
         """
         String representation when instance is printed
@@ -48,7 +48,7 @@ class BaseModel:
         """
         disdict = dict(self.__dict__)
         disdict.update({'__class__': type(self).__name__,
-                             'updated_at': self.updated_at.isoformat(),
-                              'id': self.id,
-                              'created_at': self.created_at.isoformat()})
+                        'updated_at': self.updated_at.isoformat(),
+                        'id': self.id,
+                        'created_at': self.created_at.isoformat()})
         return disdict

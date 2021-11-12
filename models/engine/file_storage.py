@@ -4,6 +4,7 @@ Serializes instances to a JSON file and deserializes JSON file to instances
 """
 import json
 from datetime import datetime
+from models.user import User
 
 
 class FileStorage:
@@ -19,7 +20,7 @@ class FileStorage:
     def new(self, obj):
         key = type(obj).__name__ + '.' + obj.id
         FileStorage.__objects[key] = obj
-        
+
     def save(self):
         """
         serializes FileStroage.__objects
