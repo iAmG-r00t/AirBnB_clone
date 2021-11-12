@@ -9,6 +9,7 @@ from datetime import datetime
 class BaseModel:
     """
     Defines all common attributes and methods for other classes
+    Also links BaseModel to FileStorage by using the variable storage
     """
     def __init__(self, *args, **kwargs):
         """
@@ -24,6 +25,8 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            from .__init__ import storage
+            storage.new(self)
         
     def __str__(self):
         """
@@ -35,14 +38,17 @@ class BaseModel:
         """
         Save updates to an instance
         """
-        self.updated_at = datetime.now()
+        self.__dict__.update({'updated_at': datetime.now()})
+        from .__init__ import storage
+        storage.save()
 
     def to_dict(self):
         """
         Returns a dictionary representation of an instance
         """
-        self.__dict__.update({"__class__": type(self).__name__,
-                              "updated_at": self.updated_at.isoformat(),
-                              "id": self.id,
-                              "created_at": self.created_at.isoformat()})
-        return self.__dict__
+        disdict = dict(self.__dict__)
+        disdict.update({'__class__': type(self).__name__,
+                             'updated_at': self.updated_at.isoformat(),
+                              'id': self.id,
+                              'created_at': self.created_at.isoformat()})
+        return disdict
