@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     The entry point for the command interpreter
     """
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User']
+    classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
     
     def do_create(self, line):
         """
