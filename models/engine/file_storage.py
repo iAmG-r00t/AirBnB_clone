@@ -39,7 +39,11 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 dictofobjs = json.loads(f.read())
                 from models.base_model import BaseModel
+                from models.user import User
                 for key, value in dictofobjs.items():
-                    FileStorage.__objects[key] = BaseModel(**value)
+                    if value['__class__'] == 'BaseModel':
+                        FileStorage.__objects[key] = BaseModel(**value)
+                    elif value['__class__'] == 'User':
+                        FileStorage.__objects[key] = User(**value)
         except FileNotFoundError:
             pass

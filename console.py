@@ -13,20 +13,24 @@ class HBNBCommand(cmd.Cmd):
     The entry point for the command interpreter
     """
     prompt = '(hbnb) '
-
+    classes = ['BaseModel', 'User']
+    
     def do_create(self, line):
         """
-        Creates a new instance of BaseModel, saves it
+        Creates a new instance of a given class, saves it
         (to the JSON file) and prints the id
         """
         if line == '':
             print('** class name missing **')
-        elif line != 'BaseModel':
+        elif line not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
-            base_obj = BaseModel()
+            if line == 'BaseModel':
+                obj = BaseModel()
+            elif line == 'User':
+                obj = User()
             storage.save()
-            print(base_obj.id)
+            print(obj.id)
 
     def do_show(self, line):
         """
@@ -36,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] != 'BaseModel':
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
             if len(args) < 2:
@@ -58,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] != 'BaseModel':
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
             if len(args) < 2:
@@ -79,13 +83,18 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name. Ex: $ all BaseModel or $ all
         """
         args = line.split()
+        result = []
         if len(args) != 0:
-            if args[0] != 'BaseModel':
+            if args[0] not in HBNBCommand.classes:
                 print('** class doesn\'t exist **')
                 return
-        result = []
-        for key, value in storage.all().items():
-            result.append(value.__str__())
+            else:
+                for key, value in storage.all().items():
+                    if type(value).__name__ == args[0]:
+                        result.append(value.__str__())
+        else:
+            for key, value in storage.all().items():
+                result.append(value.__str__())
         print(result)
 
     def do_update(self, line):
@@ -99,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] != 'BaseModel':
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         elif len(args) < 2:
             print('** instance id missing **')
@@ -118,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                 print('** attribute can\'t be updated **')
                 return
             """
-            string validity test begins(incomplete)
+            string validity test begins (incomplete)
             """
             if value[0] == '"' and value[-1] == '"' or value[0] == "'":
                 if value[0] != '"':
@@ -144,9 +153,7 @@ be between double quote **")
 double quotes **")
                     return
                 attr = attr[1:-1]
-            """
-            string validity test ends
-            """
+            """ string validity test ends """
             key = classname + '.' + objid
             try:
                 instance = storage.all()[key]
