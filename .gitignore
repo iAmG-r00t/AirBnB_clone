@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-__init__.py
-!models/__init__.py
+# __init__.py (all needed)
+# !models/__init__.py (not necessary)
 file.json
