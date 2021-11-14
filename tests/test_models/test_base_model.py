@@ -10,4 +10,3 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         base1 = BaseModel()
         self.assertEqual(base1.__class__, BaseModel)
-    
