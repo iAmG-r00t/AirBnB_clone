@@ -13,9 +13,8 @@ class HBNBCommand(cmd.Cmd):
     The entry point for the command interpreter
     """
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'Place', 'State',
-               'City', 'Amenity', 'Review']
-
+    classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
+    
     def do_create(self, line):
         """
         Creates a new instance of a given class, saves it
