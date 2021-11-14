@@ -1,0 +1,17 @@
+#!/usr/bin/python3
+"""
+Test suite for base_model
+"""
+import unittest
+from models.base_model import BaseModel
+from models.user import User
+
+
+class TestBaseModel(unittest.TestCase):
+    def test_str(self):
+        user = User()
+        self.assertEqual(user.__class__, User)
+
+    def test_parent(self):
+        user = User()
+        self.assertTrue(isinstance(user, BaseModel))
