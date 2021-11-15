@@ -17,14 +17,23 @@ class TestBaseModel(unittest.TestCase):
         checks the string output of an instance
         """
         base = BaseModel()
-        self.assertEqual(base.__str__(), f"[{type(base).__name__}] ({base.id}) {base.__dict__}")
+        self.assertEqual(base.__str__(),
+                         f"[{type(base).__name__}] \
+({base.id}) {base.__dict__}")
 
     def test_to_dict(self):
         """
         checks the to_dict() function of an instance
         """
         base = BaseModel()
-        self.assertDictEqual(base.to_dict(), {'__class__': type(base).__name__, 'updated_at': base.updated_at.isoformat(), 'id': base.id, 'created_at': base.created_at.isoformat()})
+        prev_time = base.updated_at
+        self.assertDictEqual(base.to_dict(),
+                             {'__class__': type(base).__name__,
+                              'updated_at': base.updated_at.isoformat(),
+                              'id': base.id,
+                              'created_at': base.created_at.isoformat()})
+        base.save()
+        self.assertNotEqual(prev_time, base.updated_at)
 
     def test_attr_classes(self):
         """
