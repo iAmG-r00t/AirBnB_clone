@@ -31,6 +31,8 @@ class TestBaseModel(unittest.TestCase):
         checks if the right classes were use to generate attributes
         """
         base = BaseModel()
+        base2 = BaseModel()
         self.assertIsInstance(base.id, str)
         self.assertIsInstance(base.created_at, datetime)
         self.assertIsInstance(base.updated_at, datetime)
+        self.assertNotEqual(base.id, base2.id)
