@@ -45,5 +45,16 @@ class FileStorage:
                         FileStorage.__objects[key] = BaseModel(**value)
                     elif value['__class__'] == 'User':
                         FileStorage.__objects[key] = User(**value)
+                    elif value['__class__'] == 'Place':
+                        FileStorage.__objects[key] = Place(**value)
+                    elif value['__class__'] == 'State':
+                        FileStorage.__objects[key] = State(**value)
+                    elif value['__class__'] == 'City':
+                        FileStorage.__objects[key] = City(**value)
+                    elif value['__class__'] == 'Amenity':
+                        FileStorage.__objects[key] = Amenity(**value)
+                    elif value['__class__'] == 'Review':
+                        FileStorage.__objects[key] = Review(**value)
+
         except FileNotFoundError:
             pass

@@ -4,3 +4,4 @@ __pycache__/
 # __init__.py (all needed)
 # !models/__init__.py (not necessary)
 file.json
+*#
