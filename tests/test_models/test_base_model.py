@@ -8,5 +8,5 @@ from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     def test_str(self):
-        base1 = BaseModel()
-        self.assertEqual(base1.__class__, BaseModel)
+        base = BaseModel()
+        self.assertEqual(base.__str__(), f"[{type(base).__name__}] ({base.id}) {base.__dict__}")
