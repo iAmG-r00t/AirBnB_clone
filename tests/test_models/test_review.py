@@ -10,7 +10,9 @@ from models.review import Review
 class TestBaseModel(unittest.TestCase):
     def test_str(self):
         review = Review()
-        self.assertEqual(review.__class__, Review)
+        self.assertEqual(review.place_id, "")
+        self.assertEqual(review.user_id, "")
+        self.assertEqual(review.text, "")
 
     def test_parent(self):
         review = Review()

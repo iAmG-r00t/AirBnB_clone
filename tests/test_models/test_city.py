@@ -8,9 +8,10 @@ from models.city import City
 
 
 class TestBaseModel(unittest.TestCase):
-    def test_str(self):
+    def test_attr(self):
         city = City()
-        self.assertEqual(city.__class__, City)
+        self.assertEqual(city.state_id, "")
+        self.assertEqual(city.name, "")
 
     def test_parent(self):
         city = City()
