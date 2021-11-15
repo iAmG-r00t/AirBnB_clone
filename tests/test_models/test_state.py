@@ -8,9 +8,9 @@ from models.state import State
 
 
 class TestBaseModel(unittest.TestCase):
-    def test_str(self):
+    def test_attr(self):
         state = State()
-        self.assertEqual(state.__class__, State)
+        self.assertEqual(state.name, "")
 
     def test_parent(self):
         state = State()
