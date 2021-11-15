@@ -5,6 +5,7 @@ Test suite for file_storage engine
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.__init__ import storage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -15,10 +16,36 @@ class TestFileStorage(unittest.TestCase):
             file_path = storage.file_pate
         with self.assertRaises(AttributeError):
             file_path = storage.__file_pate
+        with self.assertRaises(AttributeError):
+            file_path = storage.objects
+        with self.assertRaises(AttributeError):
+            file_path = storage.__objects
 
-    def test_all(self):
-        base = BaseModel()
-        storage = FileStorage()
-        self.assertEqual(base.__class__, BaseModel)
+    def test_reload(self):
         self.assertEqual(storage.reload(), None)
-        # base.save()
+
+    def test_a(self):
+        storage1 = FileStorage()
+        self.assertEqual(storage1.all(), {})
+
+    def test_b(self):
+        storage1 = FileStorage()
+        base = BaseModel()
+        storage1.new(base)
+        key = type(base).__name__ + '.' + base.id
+        self.assertEqual(storage1.all()[key], base)
+
+    """
+    def test_a_all(self):
+        all_objs = storage.all()
+        self.assertDictEqual(storage.all(), {})
+
+    def test_z_all(self):
+        base = BaseModel()
+        base.save()
+        key = 'BaseModel.' + base.id
+        self.assertIsInstance(storage.all(), dict)
+
+    def test_reload(self):
+        self.assertEqual(storage.reload(), None)
+    """
