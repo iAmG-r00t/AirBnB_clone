@@ -6,13 +6,11 @@ import cmd
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
-from datetime import datetime
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
 from models.place import Place
+from models.amenity import Amenity
 from models.review import Review
+from models.city import City
+from models.state import State
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,30 +18,45 @@ class HBNBCommand(cmd.Cmd):
     The entry point for the command interpreter
     """
     prompt = '(hbnb) '
-    
+    classes = ['BaseModel', 'User', 'Place', 'State',
+               'City', 'Amenity', 'Review']
+
     def do_create(self, line):
-        classes = ['BaseModel', 'User', 'Place', 'State',
-                   'City', 'Amenity', 'Review']
+        """
+        Creates a new instance of a given class, saves it
+        (to the JSON file) and prints the id
+        """
         if line == '':
             print('** class name missing **')
-        elif line not in classes:
+        elif line not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
             if line == 'BaseModel':
                 obj = BaseModel()
             elif line == 'User':
                 obj = User()
+            elif line == 'Place':
+                obj = Place()
+            elif line == 'State':
+                obj = State()
+            elif line == 'City':
+                obj = City()
+            elif line == 'Amenity':
+                obj = Amenity()
+            elif line == 'Review':
+                obj = Review()
             storage.save()
             print(obj.id)
 
     def do_show(self, line):
-        classes = ['BaseModel', 'User', 'Place', 'State',
-                   'City', 'Amenity', 'Review']
-
+        """
+        Prints the string representation of an
+        instance based on the class name and id.
+        """
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] not in classes:
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
             if len(args) < 2:
@@ -58,12 +71,14 @@ class HBNBCommand(cmd.Cmd):
                     print('** no instance found **')
 
     def do_destroy(self, line):
-        classes = ['BaseModel', 'User', 'Place', 'State',
-                   'City', 'Amenity', 'Review']
+        """
+        Deletes an instance based on the class name
+        and id (save the change into the JSON file)
+        """
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] not in classes:
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         else:
             if len(args) < 2:
@@ -79,12 +94,14 @@ class HBNBCommand(cmd.Cmd):
                     print('** no instance found **')
 
     def do_all(self, line):
-        classes = ['BaseModel', 'User', 'Place', 'State',
-                   'City', 'Amenity', 'Review']
+        """
+        Prints all string representation of all instances
+        based or not on the class name. Ex: $ all BaseModel or $ all
+        """
         args = line.split()
         result = []
         if len(args) != 0:
-            if args[0] not in classes:
+            if args[0] not in HBNBCommand.classes:
                 print('** class doesn\'t exist **')
                 return
             else:
@@ -97,12 +114,17 @@ class HBNBCommand(cmd.Cmd):
         print(result)
 
     def do_update(self, line):
-        classes = ['BaseModel', 'User', 'Place', 'State',
-                   'City', 'Amenity', 'Review']
+        """
+        Updates an instance based on the class name and
+        id by adding or updating attribute
+        (save the change into the JSON file). Ex: $ update
+        BaseModel 1234-1234-1234 email "aibnb@mail.com".
+        update <class name> <id> <attribute name> "<attribute value>"
+        """
         args = line.split()
         if line == '':
             print('** class name missing **')
-        elif args[0] not in classes:
+        elif args[0] not in HBNBCommand.classes:
             print('** class doesn\'t exist **')
         elif len(args) < 2:
             print('** instance id missing **')
@@ -172,4 +194,3 @@ double quotes **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
