@@ -171,7 +171,5 @@ double quotes **")
 
 
 if __name__ == '__main__':
-    try:
-        HBNBCommand().cmdloop()
-    except KeyboardInterrupt:
-        print()
+    HBNBCommand().cmdloop()
+
