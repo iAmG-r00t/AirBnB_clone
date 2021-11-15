@@ -13,5 +13,3 @@ class Teststorage(unittest.TestCase):
         base = BaseModel()
         self.assertEqual(base.__class__, BaseModel)
         self.assertIsInstance(storage, FileStorage)
-
-
