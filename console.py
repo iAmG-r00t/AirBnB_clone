@@ -21,6 +21,12 @@ class HBNBCommand(cmd.Cmd):
     classes = ['BaseModel', 'User', 'Place', 'State',
                'City', 'Amenity', 'Review']
 
+#   def parseline(self, line):
+#       print (f'parseline({line}) =>')
+#       ret = cmd.Cmd.parseline(self, line)
+#       print (ret)
+#       return ret
+
     def do_create(self, line):
         """
         Creates a new instance of a given class, saves it
@@ -178,6 +184,18 @@ double quotes **")
             except KeyError:
                 print('** no instance found **')
 
+    def do_User(self, line):
+        result = []
+        parse_line = cmd.Cmd.parseline(self, line)
+        if parse_line[2] != ".all()":
+            return cmd.Cmd.default(self, line)
+        else:
+            for key, value in storage.all().items():
+                if type(value).__name__ == 'User':
+                    result.append(value.__str__())
+            print(result)
+
+    
     def do_quit(self, line):
         """Quit command to exit from cmd"""
         return True
