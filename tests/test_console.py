@@ -30,3 +30,17 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create MyModel")
         self.assertEqual(f.getvalue(), '** class doesn\'t exist **\n')
+
+    def test_show(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show")
+        self.assertEqual(f.getvalue(), '** class name missing **\n')
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show MyModel")
+        self.assertEqual(f.getvalue(), '** class doesn\'t exist **\n')
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel")
+        self.assertEqual(f.getvalue(), '** instance id missing **\n')
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show BaseModel 1111")
+        self.assertEqual(f.getvalue(), '** no instance found **\n')
