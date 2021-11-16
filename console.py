@@ -29,10 +29,8 @@ class HBNBCommand(cmd.Cmd):
 #       return ret
 
     def do_create(self, line):
-        """
-        Creates a new instance of a given class, saves it
-        (to the JSON file) and prints the id
-        """
+        """Creates a new instance of a given class, saves it \
+(to the JSON file) and prints the id."""
         if line == '':
             print('** class name missing **')
         elif line not in HBNBCommand.classes:
