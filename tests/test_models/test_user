@@ -14,6 +14,11 @@ class TestBaseModel(unittest.TestCase):
         self.asserEqual(user.password, '')
         self.asserEqual(user.first_name, '')
         self.asserEqual(user.last_name, '')
+        
+        self.asserEqual(User.email, '')
+        self.asserEqual(User.password, '')
+        self.asserEqual(User.first_name, '')
+        self.asserEqual(User.last_name, '')
 
     def test_str(self):
         user = User()
