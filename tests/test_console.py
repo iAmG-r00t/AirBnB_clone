@@ -347,7 +347,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Review.destroy(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-        
+
     def test_basedotdestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("BaseModel.destroy()")
@@ -508,7 +508,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertIn('third', f.getvalue())
         self.assertIn('second', f.getvalue())
 
-        
     def test_placedotupdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("Place.update()")
@@ -537,7 +536,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Place.show({model_id})")
         self.assertIn('third', f.getvalue())
         self.assertIn('second', f.getvalue())
-
 
     def test_statedotupdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -625,7 +623,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Amenity.show({model_id})")
         self.assertIn('third', f.getvalue())
         self.assertIn('second', f.getvalue())
-
 
     def test_reviewdotupdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
