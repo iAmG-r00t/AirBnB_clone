@@ -116,6 +116,9 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
         self.assertNotIn('[State]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("BaseModel.all")
+        self.assertIn('***', f.getvalue())
 
     def test_reviewdotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -126,6 +129,9 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[City]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("Review.all")
+        self.assertIn('***', f.getvalue())
 
     def test_userdotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -136,6 +142,10 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
         self.assertNotIn('[State]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("User.all")
+        self.assertIn('***', f.getvalue())
+
 
     def test_statedotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -146,7 +156,11 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
         self.assertNotIn('[User]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("State.all")
+        self.assertIn('***', f.getvalue())
 
+        
     def test_placedotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("Place.all()")
@@ -156,6 +170,10 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[State]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
         self.assertNotIn('[User]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("Place.all")
+        self.assertIn('***', f.getvalue())
+
 
     def test_amenitydotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -166,6 +184,10 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[State]', f.getvalue())
         self.assertNotIn('[User]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("Amenity.all")
+        self.assertIn('***', f.getvalue())
+
 
     def test_citydotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -176,6 +198,10 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertNotIn('[Place]', f.getvalue())
         self.assertNotIn('[Amenity]', f.getvalue())
         self.assertNotIn('[User]', f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("City.all")
+        self.assertIn('***', f.getvalue())
+
 
     def test_basedotcount(self):
         with patch('sys.stdout', new=StringIO()) as f:
