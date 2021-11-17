@@ -85,3 +85,17 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertEqual(f.getvalue(), '** attribute name missing **\n')
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create BaseModel")
+        model_id = f.getvalue()
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"update BaseModel {model_id}")
+        self.assertEqual(f.getvalue(), '** attribute name missing **\n')
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"update BaseModel {model_id} first")
+        self.assertEqual(f.getvalue(), '** value missing **\n')
+        
+    def test_quit(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("quit")
+        self.assertEqual(f.getvalue(), '')
+        
+        
