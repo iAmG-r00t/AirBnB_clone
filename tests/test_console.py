@@ -473,7 +473,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"BaseModel.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"BaseModel.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"BaseModel.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"BaseModel.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -502,7 +503,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"User.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"User.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"User.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"User.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -531,7 +533,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Place.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"Place.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"Place.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Place.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -560,7 +563,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"State.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"State.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"State.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"State.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -589,7 +593,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"City.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"City.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"City.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"City.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -618,7 +623,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Amenity.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"Amenity.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"Amenity.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Amenity.show({model_id})")
         self.assertIn('third', f.getvalue())
@@ -647,7 +653,8 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Review.show({model_id})")
         self.assertIn('first', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f"Review.update({model_id}, {{'second': 5, 'third': three}})")
+            HBNBCommand().onecmd(f"Review.update({model_id},\
+{{'second': 5, 'third': three}})")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Review.show({model_id})")
         self.assertIn('third', f.getvalue())
