@@ -13,20 +13,33 @@ class TestFileStorage(unittest.TestCase):
         base = BaseModel()
         storage = FileStorage()
         with self.assertRaises(AttributeError):
-            file_path = storage.file_pate
+            file_path = storage.file_path
         with self.assertRaises(AttributeError):
-            file_path = storage.__file_pate
+            file_path = storage.__file_path
         with self.assertRaises(AttributeError):
             file_path = storage.objects
         with self.assertRaises(AttributeError):
             file_path = storage.__objects
 
+        with self.assertRaises(AttributeError):
+            FileStorage.file_path
+        with self.assertRaises(AttributeError):
+            FileStorage.__file_path
+        with self.assertRaises(AttributeError):
+            FileStorage.objects
+        with self.assertRaises(AttributeError):
+            FileStorage.__objects
+
     def test_reload(self):
+        storage1 = FileStorage()
+        base1 = BaseModel({id: 8})
+        base1.save()
+        storage.save()
         self.assertEqual(storage.reload(), None)
 
     def test_a(self):
         storage1 = FileStorage()
-        self.assertEqual(storage1.all(), {})
+        self.assertIsInstance(storage1.all(), dict)
 
     def test_b(self):
         storage1 = FileStorage()

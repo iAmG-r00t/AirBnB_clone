@@ -69,7 +69,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all MyModel")
         self.assertEqual(f.getvalue(), '** class doesn\'t exist **\n')
-   
+
     def test_update(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update")
@@ -92,7 +92,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"update BaseModel {model_id} first")
         self.assertEqual(f.getvalue(), '** value missing **\n')
-        
+
     def test_quit(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("quit")
@@ -159,7 +159,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd("State.all")
         self.assertIn('***', f.getvalue())
 
-        
     def test_placedotall(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("Place.all()")
@@ -247,7 +246,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"BaseModel.show(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-        
+
     def test_userdotshow(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("User.show()")
@@ -290,7 +289,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"State.show(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
 
-
     def test_placedotshow(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("Place.show()")
@@ -304,7 +302,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Place.show(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-
 
     def test_amenitydotshow(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -401,7 +398,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"Place.destroy(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-    
+
     def test_statedotdestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("State.destroy()")
@@ -418,7 +415,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"State.destroy(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-    
+
     def test_citydotdestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("City.destroy()")
@@ -435,7 +432,7 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f"City.destroy(idf)")
         self.assertEqual(f.getvalue(), '** no instance found **\n')
-    
+
     def test_amenitydotdestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("Amenity.destroy()")
@@ -482,7 +479,6 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
         self.assertIn('third', f.getvalue())
         self.assertIn('second', f.getvalue())
 
-        
     def test_userdotupdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("User.update()")
@@ -659,4 +655,3 @@ class, saves it (to the JSON file) and prints the id.\n', f.getvalue())
             HBNBCommand().onecmd(f"Review.show({model_id})")
         self.assertIn('third', f.getvalue())
         self.assertIn('second', f.getvalue())
-
