@@ -4,8 +4,17 @@
 
 /* Header style */
 header {
-  background: #fff url('../images/logo.png') 20px center no-repeat;
-  border-bottom: 1px solid #ccc;
+  background-color: #FFFFFF;
   height: 70px;
   width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* Header logo style */
+header .logo {
+  background: url("../images/logo.png") no-repeat;
+  background-position: 0px center;
+  height: 100%;
+  margin-left: 20px;
+  width: 150px;
 }

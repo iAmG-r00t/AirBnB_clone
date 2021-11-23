@@ -4,13 +4,13 @@
 
 /* Footer style */
 footer {
-  align-items: center;
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-  bottom: 0;
-  display: flex;
+  background-color: #FFFFFF;
   height: 60px;
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+  display: flex;
   justify-content: center;
   position: absolute;
-  width: 100%;
+  align-items: center;
+  bottom: 0px;
 }

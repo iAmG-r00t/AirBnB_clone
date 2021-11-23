@@ -4,12 +4,12 @@
 
 /* Footer style */
 footer {
-  align-items: center;
-  background-color: #0f0;
-  bottom: 0;
-  display: flex;
+  background-color: #00FF00;
   height: 60px;
-  justify-content: center;
-  position: absolute;
   width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
 }
