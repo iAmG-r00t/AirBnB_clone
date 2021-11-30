@@ -3,14 +3,13 @@
  */
 
 /* Footer style */
-footer {
-  background-color: #FFFFFF;
-  height: 60px;
-  width: 100%;
-  border-top: 1px solid #CCCCCC;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  align-items: center;
-  bottom: 0px;
+footer{
+    background-color: white;
+    height: 60px;
+    width: 100%;
+    border-top: solid 1px #CCCCCC;
+    position: fixed;
+    bottom:0;
+    text-align:center;
+    line-height:60px;
 }
